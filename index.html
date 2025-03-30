@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurology Discussion (4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            user-select: none; /* يمنع تحديد النص */
+            -webkit-user-select: none; /* لمتصفحات WebKit مثل Chrome وSafari */
+            -moz-user-select: none; /* لمتصفح Firefox */
+            -ms-user-select: none; /* لمتصفح Internet Explorer/Edge */
+        }
+        @media print { /* إخفاء الصفحة عند الطباعة */
+            body { 
+                display: none;
+            }
+        }
+
+        .quiz-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .timer {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none;
+        }
+        .incorrect {
+            color: red;
+        }
+        .correct {
+            color: green;
+        }
+        .question-result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        img {
+            pointer-events: none; /* يمنع سحب الصور */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Neurology Discussion (4)</h1>
+        <div class="timer" id="timer">Time remaining: 60 seconds</div>
+
+        <div class="question" id="question-1">
+            <p>63-year-old woman develops symptoms of nausea, vomiting, and dizziness, which she describes as a to-and-fro movement of the room like as if she is on a boat. Which of the following findings suggests the vertigo is central in origin?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="deafness"> deafness </label>
+                <label><input type="radio" name="q1" value="symptoms are more protracted but less severe"> symptoms are more protracted but less severe </label>
+                <label><input type="radio" name="q1" value="unidirectional nystagmus"> unidirectional nystagmus </label>
+                <label><input type="radio" name="q1" value="visual fixation inhibits vertigo and nystagmus"> visual fixation inhibits vertigo and nystagmus </label>
+                <label><input type="radio" name="q1" value="spinning sensation is toward the fast phase of nystagmus"> spinning sensation is toward the fast phase of nystagmus </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-2">
+            <p>47-year-old man presents to the emergency room with symptoms of dizziness and difficulty walking. He describes his dizziness as a spinning sensation of the room with associated nausea and vomiting. Which of the following findings suggests the vertigo is peripheral in origin?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="optic neuritis"> optic neuritis </label>
+                <label><input type="radio" name="q2" value="tinnitus"> tinnitus </label>
+                <label><input type="radio" name="q2" value="bidirectional nystagmus"> bidirectional nystagmus </label>
+                <label><input type="radio" name="q2" value="vertical nystagmus"> vertical nystagmus </label>
+                <label><input type="radio" name="q2" value="visual fixation does not affect vertigo or nystagmus"> visual fixation does not affect vertigo or nystagmus </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-3">
+            <p>57-year-old woman presents with an 8 week history of intermittent dizziness. These episodes typically occur when she suddenly moves her head and are characterised by the sensation that the room is 'spinning' Most attacks last around one minute before dissipating. Neurological examination is unremarkable What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="Benign paroxysmal positional vertigo"> Benign paroxysmal positional vertigo </label>
+                <label><input type="radio" name="q3" value="Meniere disease"> Meniere disease </label>
+                <label><input type="radio" name="q3" value="Crescendo transient ischaemic attacks"> Crescendo transient ischaemic attacks </label>
+                <label><input type="radio" name="q3" value="Multiple sclerosis"> Multiple sclerosis </label>
+                <label><input type="radio" name="q3" value="Viral labyrinthitis"> Viral labyrinthitis </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-4">
+            <p>78 years old woman comes to clinic with repeated episodes of falls. On history, she tells you that every time when she first wakes up to get out of bed, she has episode of feeling very dizzy and she was unable to walk for 30 seconds. She has normal neurological examination. What is the most likely diagnosis ?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Benign paroxysmal positional vertigo"> Benign paroxysmal positional vertigo </label>
+                <label><input type="radio" name="q4" value="Concussion"> Concussion </label>
+                <label><input type="radio" name="q4" value="Migraine"> Migraine </label>
+                <label><input type="radio" name="q4" value="Vertebrobasilar insufficiency"> Vertebrobasilar insufficiency </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-5">
+            <p>79-year-old woman is seen in the office for “dizziness.” Which of the following findings would suggest true vertigo?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="the patient is taking multiple antihypertensives"> the patient is taking multiple antihypertensives </label>
+                <label><input type="radio" name="q5" value="the symptoms are worse on standing"> the symptoms are worse on standing </label>
+                <label><input type="radio" name="q5" value="she has had two falls"> she has had two falls </label>
+                <label><input type="radio" name="q5" value="the room is spinning around her"> the room is spinning around her </label>
+                <label><input type="radio" name="q5" value="a prior Holter monitor was negative during episodes of dizziness"> a prior Holter monitor was negative during episodes of dizziness </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-6">
+            <p>48-year-old man complains of recurrent episodes of sudden-onset dizziness. He notices an abrupt onset of a spinning sensation when sitting up or lying down in bed. The symptoms last for 30 seconds and then resolve completely. He has no hearing change or other neurologic symptoms, and his physical examination is completely normal. A Dix-Hallpike maneuver reproduces his symptoms. Which of the following is the most likely mechanism for his vertigo symptoms?</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="basilar migraine"> basilar migraine </label>
+                <label><input type="radio" name="q6" value="brain stem ischemic events"> brain stem ischemic events </label>
+                <label><input type="radio" name="q6" value="benign cerebellar tumors"> benign cerebellar tumors </label>
+                <label><input type="radio" name="q6" value="calcium debris (calcium carbonate crystals) in the semicircular canals"> calcium debris (calcium carbonate crystals) in the semicircular canals </label>
+                <label><input type="radio" name="q6" value="Meniere’s disease"> Meniere’s disease </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-7">
+            <p>59-year-old man presents with recurrent attacks of vertigo and dizziness. These attacks are often precipitated by a change in head position and typically last around half a minute. Examination of the cranial nerves and ears is unremarkable. His blood pressure is 120/78 mmHg sitting and 116/76 mmHg standing. Given the likely underlying disorder, what is the most appropriate next step to help confirm the diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="Epley manoeuvre"> Epley manoeuvre </label>
+                <label><input type="radio" name="q7" value="Tilt table test"> Tilt table test </label>
+                <label><input type="radio" name="q7" value="24 hour ECG monitoring"> 24 hour ECG monitoring </label>
+                <label><input type="radio" name="q7" value="MRI of the cerebellopontine angle"> MRI of the cerebellopontine angle </label>
+                <label><input type="radio" name="q7" value="Dix-Hallpike manoeuvre"> Dix-Hallpike manoeuvre </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-8">
+            <p>52-year-old woman presents with a two week history of dizziness when she rolls over in bed. She says it feels like the room is spinning around her. Examination of her ears and cranial nerves is unremarkable. Given the likely diagnosis of benign paroxysmal positional vertigo, what is the most appropriate management?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="Trial of prochlorperazine"> Trial of prochlorperazine </label>
+                <label><input type="radio" name="q8" value="Request MRI brain"> Request MRI brain </label>
+                <label><input type="radio" name="q8" value="Advise review by an optician"> Advise review by an optician </label>
+                <label><input type="radio" name="q8" value="Perform Epley manoeuvre"> Perform Epley manoeuvre </label>
+                <label><input type="radio" name="q8" value="Trial of cinnarizine"> Trial of cinnarizine </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-9">
+            <p>65-year-old woman complains of recurrent episodes of sudden-onset dizziness and nausea. She notices an abrupt onset of a spinning sensation when rolling over or sitting up in bed. The symptoms last for 30 seconds and then completely resolve. She has no hearing change or other neurologic symptoms, and her physical examination is completely normal. A Dix-Hallpike maneuver reproduces her symptoms. Which of the following findings on vestibular testing favors the diagnosis of benign paroxysmal positional vertigo (BPPV) over central positional vertigo?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="no latency period"> no latency period </label>
+                <label><input type="radio" name="q9" value="no fatigability"> no fatigability </label>
+                <label><input type="radio" name="q9" value="habituation occurs"> habituation occurs </label>
+                <label><input type="radio" name="q9" value="mild vertigo"> mild vertigo </label>
+                <label><input type="radio" name="q9" value="symptoms consistently the same from one set of tests to the next"> symptoms consistently the same from one set of tests to the next </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-10">
+            <p>40-year-old woman presents with recurrent episode of vertigo associated with a feeling or 'fullness' and 'pressure' in her ears. She thinks her hearing is worse during the attacks. Clinical examination is unremarkable. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="Meniere's disease"> Meniere's disease </label>
+                <label><input type="radio" name="q10" value="Benign paroxysmal positional vertigo"> Benign paroxysmal positional vertigo </label>
+                <label><input type="radio" name="q10" value="Acoustic neuroma"> Acoustic neuroma </label>
+                <label><input type="radio" name="q10" value="Cholesteatoma"> Cholesteatoma </label>
+                <label><input type="radio" name="q10" value="Somatisation"> Somatisation </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-11">
+            <p>11- Which one of the following medications is most useful for helping to prevent attacks of Meniere's disease?</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="Promethazine"> Promethazine</label>
+                <label><input type="radio" name="q11" value="Prochlorperazine"> Prochlorperazine</label>
+                <label><input type="radio" name="q11" value="Betahistine"> Betahistine</label>
+                <label><input type="radio" name="q11" value="Chlorphenamine"> Chlorphenamine</label>
+                <label><input type="radio" name="q11" value="Cinnarizine"> Cinnarizine</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-12">
+            <p>12- Which one of the following statements regarding Meniere's disease is correct?</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="More common in patients from the Indian Subcontinent"> More common in patients from the Indian Subcontinent</label>
+                <label><input type="radio" name="q12" value="Symptoms resolve in the majority of patients after 6-12 months"> Symptoms resolve in the majority of patients after 6-12 months</label>
+                <label><input type="radio" name="q12" value="It is very rare that patients develop permanent hearing loss"> It is very rare that patients develop permanent hearing loss</label>
+                <label><input type="radio" name="q12" value="More common in children"> More common in children</label>
+                <label><input type="radio" name="q12" value="Approximately equal incidence in males and females"> Approximately equal incidence in males and females</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-13">
+            <p>13- Commonest side effects of quinine?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="Headache"> Headache</label>
+                <label><input type="radio" name="q13" value="Tinnitus and transient deafness"> Tinnitus and transient deafness</label>
+                <label><input type="radio" name="q13" value="Nausea and vomiting"> Nausea and vomiting</label>
+                <label><input type="radio" name="q13" value="Optic neuritis"> Optic neuritis</label>
+                <label><input type="radio" name="q13" value="Peripheral neuropathy"> Peripheral neuropathy</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-14">
+            <p>14- 45-year-old man presents with dizziness and right-sided hearing loss. Which one of the following tests would most likely indicate an acoustic neuroma?</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="JerKy nystagmus"> JerKy nystagmus</label>
+                <label><input type="radio" name="q14" value="Left homonymous hemianopia"> Left homonymous hemianopia</label>
+                <label><input type="radio" name="q14" value="Tongue deviated to the left"> Tongue deviated to the left</label>
+                <label><input type="radio" name="q14" value="Fasciculation of the tongue"> Fasciculation of the tongue</label>
+                <label><input type="radio" name="q14" value="Absent corneal reflex"> Absent corneal reflex</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-15">
+            <p>15- 68-year-old man has many months history of progressive hearing loss, unsteady gait, tinnitus, and facial pain. An MRI scan reveals a tumour at the cerebellopontine angle. Which of the following cranial nerves is this tumour most likely to affect?</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="fourth cranial nerve"> fourth cranial nerve</label>
+                <label><input type="radio" name="q15" value="sixth cranial nerve"> sixth cranial nerve</label>
+                <label><input type="radio" name="q15" value="eighth cranial nerve"> eighth cranial nerve</label>
+                <label><input type="radio" name="q15" value="tenth cranial nerve"> tenth cranial nerve</label>
+                <label><input type="radio" name="q15" value="eleventh cranial nerve"> eleventh cranial nerve</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-16">
+            <p>16- Patient admitted with acute labyrinthitis, doctor most probably sure by the following ..</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="Evolving symptoms over weeks"> Evolving symptoms over weeks</label>
+                <label><input type="radio" name="q16" value="Ipsilateral sensorineural hearing loss"> Ipsilateral sensorineural hearing loss</label>
+                <label><input type="radio" name="q16" value="Contralateral Nystagmus worsened by change in position"> Contralateral Nystagmus worsened by change in position</label>
+                <label><input type="radio" name="q16" value="Precipitation by minor head injury"> Precipitation by minor head injury</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-17">
+            <p>17- During a routine cranial nerve examination the following findings are observed ..<br>
+            Rinne's test: Air conduction > bone conduction in both ears<br>
+            Weber's test: Localises to the right side<br>
+            What do these tests imply?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="Left conductive deafness"> Left conductive deafness</label>
+                <label><input type="radio" name="q17" value="Normal hearing"> Normal hearing</label>
+                <label><input type="radio" name="q17" value="Right conductive deafness"> Right conductive deafness</label>
+                <label><input type="radio" name="q17" value="Right sensorineural deafness"> Right sensorineural deafness</label>
+                <label><input type="radio" name="q17" value="Left sensorineural deafness"> Left sensorineural deafness</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-18">
+            <p>18- You are called to evaluate 67 years old woman with change in mental status. Her husband reports that she appears withdrawn and apathetic in contrast to her baseline. Her alertness has fluctuated throughout the day. On examination, she appears drowsy although she easily aroused by verbal stimuli. Which feature is necessary to diagnose delirium ??</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="Altered sleep wake cycle"> Altered sleep wake cycle</label>
+                <label><input type="radio" name="q18" value="Inattention"> Inattention</label>
+                <label><input type="radio" name="q18" value="Disorientation"> Disorientation</label>
+                <label><input type="radio" name="q18" value="Psychomotor agitation"> Psychomotor agitation</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-19">
+            <p>19- 75-year-old man is seen with his family who are concerned about his memory and behaviour over the past six months. A cognitive assessment is performed which seems to confirm the family's concerns. A series of blood tests are performed to exclude reversible causes. A full blood count, urea and electrolytes, liver function tests and bone profile are requested. Which other blood tests is it most appropriate to request?</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="Thyroid function tests, vitamin B12, glucose, syphilis, HIV"> Thyroid function tests, vitamin B12, glucose, syphilis, HIV</label>
+                <label><input type="radio" name="q19" value="Thyroid function tests, vitamin B12, folate, glucose"> Thyroid function tests, vitamin B12, folate, glucose</label>
+                <label><input type="radio" name="q19" value="Thyroid function tests, vitamin B12, folate, glucose. syphilis"> Thyroid function tests, vitamin B12, folate, glucose. syphilis</label>
+                <label><input type="radio" name="q19" value="Thyroid function tests, vitamin B12"> Thyroid function tests, vitamin B12</label>
+                <label><input type="radio" name="q19" value="Thyroid function tests, vitamin B12, syphilis"> Thyroid function tests, vitamin B12, syphilis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-20">
+            <p>20- 78-year-old man is seen in the Memory clinic His daughter reports that for the past 12 months he has become increasingly forgetful and has now started to wander around at night. A mini-mental test is performed and he scores 18 out of 30. Neurological examination is unremarkable. A full blood screen is also requested, all of which comes back as normal. What is the most appropriate next step?</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="Arrange a MRI head"> Arrange a MRI head</label>
+                <label><input type="radio" name="q20" value="Perform carotid Dopplers"> Perform carotid Dopplers</label>
+                <label><input type="radio" name="q20" value="Give practical advice + advise family to contact Alzheimer's Society"> Give practical advice + advise family to contact Alzheimer's Society</label>
+                <label><input type="radio" name="q20" value="Prescribe aspirin + simvastatin"> Prescribe aspirin + simvastatin</label>
+                <label><input type="radio" name="q20" value="Prescribe donepezil"> Prescribe donepezil</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-21">
+            <p>21- 69-year-old man who is known to have Alzheimer's disease is reviewed in clinic. His latest Mini Mental State Examination (MMSE) score is 18 out of 30. What is the most appropriate management?</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="Supportive care + memantine"> Supportive care + memantine</label>
+                <label><input type="radio" name="q21" value="Supportive care + trial of citalopram"> Supportive care + trial of citalopram</label>
+                <label><input type="radio" name="q21" value="Supportive care"> Supportive care</label>
+                <label><input type="radio" name="q21" value="Supportive care + donepezil + low-dose aspirin"> Supportive care + donepezil + low-dose aspirin</label>
+                <label><input type="radio" name="q21" value="Supportive care + donepezil"> Supportive care + donepezil</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-22">
+            <p>22- 70 years old person on antipsychotic drug and had dementia, agitation and hallucination ....  What is your diagnosis ?</p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="Lewy body dementia"> Lewy body dementia</label>
+                <label><input type="radio" name="q22" value="Crutzfeldt jacob disease"> Crutzfeldt jacob disease</label>
+                <label><input type="radio" name="q22" value="Multiple sclerosis"> Multiple sclerosis</label>
+                <label><input type="radio" name="q22" value="Alzheimer's disease"> Alzheimer's disease</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-23">
+            <p>23- 80-year-old man is investigated for progressive cognitive impairment. Which one of the following features is most suggestive of Lewy body dementia?</p>
+            <div class="options">
+                <label><input type="radio" name="q23" value="Disinhibition"> Disinhibition</label>
+                <label><input type="radio" name="q23" value="Emotional lability"> Emotional lability</label>
+                <label><input type="radio" name="q23" value="Symptoms worsen with neuroleptics"> Symptoms worsen with neuroleptics</label>
+                <label><input type="radio" name="q23" value="Urinary incontinence"> Urinary incontinence</label>
+                <label><input type="radio" name="q23" value="Paucity of extrapyramidal signs"> Paucity of extrapyramidal signs</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-24">
+            <p>24- 78-year-old man is referred to neurology outpatients. For the past six months he has been troubled with memory impairment, hallucinations and a resting tremor. On walking into the clinic room he is noted to have a festinating gait and an expressionless face. He scores 12/30 on the mini-mental state examination (MMSE). Given the likely diagnosis, which one of the following tests is most likely to confirm the diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q24" value="Serum copper levels"> Serum copper levels</label>
+                <label><input type="radio" name="q24" value="Cerebral angiography"> Cerebral angiography</label>
+                <label><input type="radio" name="q24" value="MRI head"> MRI head</label>
+                <label><input type="radio" name="q24" value="SPECT scan"> SPECT scan</label>
+                <label><input type="radio" name="q24" value="PET scan"> PET scan</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-25">
+            <p>25- 84-year-old female is admitted for a urinary tract infection. On the second night of admission she is found wandering outside the ward in an agitated state. Despite appropriate antibiotic therapy, nursing care and modification of her environment she remains agitated and aggressive and it is judged a potential danger to herself What is the most appropriate management?</p>
+            <div class="options">
+                <label><input type="radio" name="q25" value="Haloperidol 5 mg orally"> Haloperidol 5 mg orally</label>
+                <label><input type="radio" name="q25" value="Lorazepam 2 mg intramuscularly"> Lorazepam 2 mg intramuscularly</label>
+                <label><input type="radio" name="q25" value="Haloperidol 0.5 mg orally"> Haloperidol 0.5 mg orally</label>
+                <label><input type="radio" name="q25" value="Lorazepam 0.5 mg orally"> Lorazepam 0.5 mg orally</label>
+                <label><input type="radio" name="q25" value="Ask for on-call psychiatric opinion for consideration of section under the Mental Health Act"> Ask for on-call psychiatric opinion for consideration of section under the Mental Health Act</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-26">
+            <p>26- For the past 6 weeks, 64 years old woman with headache and difficult reading. Her husband has noted mild but progressive intellectual decline during this period. On examination, there are myoclonic jerks when loud noises occur. CT brain and CSF examination is normal. The most likely diagnosis is ...</p>
+            <div class="options">
+                <label><input type="radio" name="q26" value="Multiple sclerosis"> Multiple sclerosis</label>
+                <label><input type="radio" name="q26" value="Alzheimer's disease"> Alzheimer's disease</label>
+                <label><input type="radio" name="q26" value="Bilateral subdural hematoma"> Bilateral subdural hematoma</label>
+                <label><input type="radio" name="q26" value="Lewy body dementia"> Lewy body dementia</label>
+                <label><input type="radio" name="q26" value="Crutzfeldt jacob disease"> Crutzfeldt jacob disease</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-27">
+            <p>27- 68 years old female presented to clinic with declining cognitive function. Her family reports that her short term memory has significantly deteriorated. There is also emotional instability and change in personality. On examination, myoclonus was observed but rest of neurological examination are unremarkable. There is family history of Alzheimer disease. What is the most likely diagnosis ??</p>
+            <div class="options">
+                <label><input type="radio" name="q27" value="Alzheimer's dementia"> Alzheimer's dementia</label>
+                <label><input type="radio" name="q27" value="Progressive supranuclear palsy"> Progressive supranuclear palsy</label>
+                <label><input type="radio" name="q27" value="Creutzfeldt jakob disease"> Creutzfeldt jakob disease</label>
+                <label><input type="radio" name="q27" value="Vascular dementia"> Vascular dementia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-28">
+            <p>28- 67 years old man with poor memory, wide based gait and urinary incontinence. What is your diagnosis ?</p>
+            <div class="options">
+                <label><input type="radio" name="q28" value="HIV encephalitis"> HIV encephalitis</label>
+                <label><input type="radio" name="q28" value="Normal pressure hydrocephalus"> Normal pressure hydrocephalus</label>
+                <label><input type="radio" name="q28" value="Syringomyelia"> Syringomyelia</label>
+                <label><input type="radio" name="q28" value="Wernicke's Korsakoff syndrome"> Wernicke's Korsakoff syndrome</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-29">
+            <p>29- 76-year-old man is reviewed in the Elderly Medicine clinic. He is concerned about his increasing forgetfulness over the past six months. His daughter notes he has generally 'slowed down and struggles to follow conversations. Over the past month he has noted increasingly frequent episodes of urinary incontinence. He has also had one episode of faecal incontinence in the past week. On examination he is noted to have brisk reflexes and a short, shuffling gait. No cerebellar signs are noted. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q29" value="Multiple system atrophy"> Multiple system atrophy</label>
+                <label><input type="radio" name="q29" value="Parkinson's disease"> Parkinson's disease</label>
+                <label><input type="radio" name="q29" value="Normal pressure hydrocephalus"> Normal pressure hydrocephalus</label>
+                <label><input type="radio" name="q29" value="Urinary tract infection"> Urinary tract infection</label>
+                <label><input type="radio" name="q29" value="Pick's disease"> Pick's disease</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-30">
+            <p>30- Which one of the following is least associated with normal pressure hydrocephalus?</p>
+            <div class="options">
+                <label><input type="radio" name="q30" value="Papilloedema"> Papilloedema</label>
+                <label><input type="radio" name="q30" value="Dementia"> Dementia</label>
+                <label><input type="radio" name="q30" value="Urinary incontinence"> Urinary incontinence</label>
+                <label><input type="radio" name="q30" value="Gait abnormality"> Gait abnormality</label>
+                <label><input type="radio" name="q30" value="Enlarged fourth ventricle"> Enlarged fourth ventricle</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-31">
+            <p>31- An obese 24-year-old female presents with headaches and blurred vision. Examination reveals bilateral blurring of the optic discs but is otherwise unremarkable with no other neurological signs. Blood pressure is 130/74 and she is apyrexial. What is the most likely underlying diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q31" value="Multiple sclerosis"> Multiple sclerosis</label>
+                <label><input type="radio" name="q31" value="Meningococcal meningitis"> Meningococcal meningitis</label>
+                <label><input type="radio" name="q31" value="Brain abscess"> Brain abscess</label>
+                <label><input type="radio" name="q31" value="Normal pressure hydrocephalus"> Normal pressure hydrocephalus</label>
+                <label><input type="radio" name="q31" value="Idiopathic intracranial hypertension"> Idiopathic intracranial hypertension</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-32">
+            <p>32- 27-year-old woman is reviewed due to sudden loss of vision in her left eye. She is known to have severe rheumatoid arthritis and is treated currently with methotrexate, infliximab and prednisolone. She has in the past also used sulfasalazine and hydroxychloroquine. For the past 6 weeks she has developed troublesome headaches. Examination demonstrates bilateral papilloedema. Which one of the following is most likely to be responsible for this presentation?</p>
+            <div class="options">
+                <label><input type="radio" name="q32" value="Chloroquine retinopathy"> Chloroquine retinopathy</label>
+                <label><input type="radio" name="q32" value="Prednisolone"> Prednisolone</label>
+                <label><input type="radio" name="q32" value="Infliximab"> Infliximab</label>
+                <label><input type="radio" name="q32" value="Methotrexate"> Methotrexate</label>
+                <label><input type="radio" name="q32" value="Keratoconjunctivitis sicca"> Keratoconjunctivitis sicca</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-33">
+            <p>33- Which one of the following is least recognised as causing idiopathic intracranial hypertension?</p>
+            <div class="options">
+                <label><input type="radio" name="q33" value="Oral contraceptive pill"> Oral contraceptive pill</label>
+                <label><input type="radio" name="q33" value="Tetracycline"> Tetracycline</label>
+                <label><input type="radio" name="q33" value="Ciclosporin"> Ciclosporin</label>
+                <label><input type="radio" name="q33" value="Prednisolone"> Prednisolone</label>
+                <label><input type="radio" name="q33" value="Vitamin A"> Vitamin A</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-34">
+            <p>34- 36-year-old male patient with a long history of relapsing-remitting multiple sclerosis, develops double vision. On examination of his eye movements, abduction of either eye elicits nystagmus in that eye. Adduction is impaired in both eyes. On MRI scanning. Where will a new white matter lesion probably evident?</p>
+            <div class="options">
+                <label><input type="radio" name="q34" value="Cerebellum"> Cerebellum</label>
+                <label><input type="radio" name="q34" value="Cingulate gyrus"> Cingulate gyrus</label>
+                <label><input type="radio" name="q34" value="Medial longitudinal bundle"> Medial longitudinal bundle</label>
+                <label><input type="radio" name="q34" value="Optic chiasma"> Optic chiasma</label>
+                <label><input type="radio" name="q34" value="Parietal lobes"> Parietal lobes</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-35">
+            <p>35- The structure that is most specific when involved in MRI to suggest a diagnosis multiple sclerosis in the appropriate clinical setting is:</p>
+            <div class="options">
+                <label><input type="radio" name="q35" value="Corpus callosum"> Corpus callosum</label>
+                <label><input type="radio" name="q35" value="Brainstem"> Brainstem</label>
+                <label><input type="radio" name="q35" value="Cerebellum"> Cerebellum</label>
+                <label><input type="radio" name="q35" value="Internal capsule"> Internal capsule</label>
+                <label><input type="radio" name="q35" value="Spinal cord"> Spinal cord</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-36">
+            <p>36- You are asked to perform a neurological exam of the lower limbs on a patient with multiple sclerosis. Which one of the following findings is least typical?</p>
+            <div class="options">
+                <label><input type="radio" name="q36" value="Decreased tone"> Decreased tone</label>
+                <label><input type="radio" name="q36" value="Patellar clonus"> Patellar clonus</label>
+                <label><input type="radio" name="q36" value="Upgoing plantars"> Upgoing plantars</label>
+                <label><input type="radio" name="q36" value="Weakness"> Weakness</label>
+                <label><input type="radio" name="q36" value="Brisk reflexes"> Brisk reflexes</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-37">
+            <p>37- Which one of the following would support a diagnosis of subacute combined degeneration of the cord rather than multiple sclerosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q37" value="Absent ankle jerks"> Absent ankle jerks</label>
+                <label><input type="radio" name="q37" value="Autonomic symptoms"> Autonomic symptoms</label>
+                <label><input type="radio" name="q37" value="Cerebellar signs"> Cerebellar signs</label>
+                <label><input type="radio" name="q37" value="Visual problems"> Visual problems</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-38">
+            <p>38- A 33-year-old female with multiple sclerosis complains that her vision becomes blurred during a hot bath. What is this an example of?</p>
+            <div class="options">
+                <label><input type="radio" name="q38" value="Uhthoffs phenomenon"> Uhthoffs phenomenon</label>
+                <label><input type="radio" name="q38" value="Oppenheim's sign"> Oppenheim's sign</label>
+                <label><input type="radio" name="q38" value="Werdnig-Hoffman's sign"> Werdnig-Hoffman's sign</label>
+                <label><input type="radio" name="q38" value="Lambert's sign"> Lambert's sign</label>
+                <label><input type="radio" name="q38" value="Lhermitte's sign"> Lhermitte's sign</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-39">
+            <p>39- Regarding multiple sclerosis, all are true except ...</p>
+            <div class="options">
+                <label><input type="radio" name="q39" value="Oligoclonal bands increase with time"> Oligoclonal bands increase with time</label>
+                <label><input type="radio" name="q39" value="Protein more than 100"> Protein more than 100</label>
+                <label><input type="radio" name="q39" value="Protein less than 100"> Protein less than 100</label>
+                <label><input type="radio" name="q39" value="Multiple sclerosis affect female 4 times more than male"> Multiple sclerosis affect female 4 times more than male</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-40">
+            <p>40- Which of the following results would you expect from CSF examination of patient with multiple sclerosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q40" value="Normal examination"> Normal examination</label>
+                <label><input type="radio" name="q40" value="CSF cell count of 100/ ml"> CSF cell count of 100/ ml</label>
+                <label><input type="radio" name="q40" value="Presence of polymorphonuclear cells"> Presence of polymorphonuclear cells</label>
+                <label><input type="radio" name="q40" value="CSF protein level more than 1g/L (100 mg/ dl)"> CSF protein level more than 1g/L (100 mg/ dl)</label>
+                <label><input type="radio" name="q40" value="Presence of oligoclonal bands by aerosol gel electrophoresis"> Presence of oligoclonal bands by aerosol gel electrophoresis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-41">
+            <p>41- Which one of the following factors indicates a poor prognosis in patients with multiple sclerosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q41" value="Relapsing-remitting disease"> Relapsing-remitting disease</label>
+                <label><input type="radio" name="q41" value="Presence of sensory symptoms"> Presence of sensory symptoms</label>
+                <label><input type="radio" name="q41" value="Young age of onset"> Young age of onset</label>
+                <label><input type="radio" name="q41" value="Male sex"> Male sex</label>
+                <label><input type="radio" name="q41" value="Long interval between first two relapses"> Long interval between first two relapses</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-42">
+            <p>42- Adverse prognostic features in patients with multiple sclerosis include which of the following ?</p>
+            <div class="options">
+                <label><input type="radio" name="q42" value="Presence of optic neuritis"> Presence of optic neuritis</label>
+                <label><input type="radio" name="q42" value="Female sex"> Female sex</label>
+                <label><input type="radio" name="q42" value="Age"> Age</label>
+                <label><input type="radio" name="q42" value="Multiple cranial abnormalities"> Multiple cranial abnormalities</label>
+                <label><input type="radio" name="q42" value="Findings in CSF"> Findings in CSF</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-43">
+            <p>43- Which one of the following is used in the management of multiple sclerosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q43" value="Beta-interferon"> Beta-interferon</label>
+                <label><input type="radio" name="q43" value="Gamma-interferon"> Gamma-interferon</label>
+                <label><input type="radio" name="q43" value="Infliximab"> Infliximab</label>
+                <label><input type="radio" name="q43" value="Rituximab"> Rituximab</label>
+                <label><input type="radio" name="q43" value="Alpha-interferon"> Alpha-interferon</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-44">
+            <p>44- A 43-year-old woman with multiple sclerosis presents for review. She is having increasing problems with painful involuntary contractions of the leg muscles. What is the most appropriate first-line therapy?</p>
+            <div class="options">
+                <label><input type="radio" name="q44" value="Referral for relaxation therapy"> Referral for relaxation therapy</label>
+                <label><input type="radio" name="q44" value="Baclofen"> Baclofen</label>
+                <label><input type="radio" name="q44" value="Diazepam"> Diazepam</label>
+                <label><input type="radio" name="q44" value="Dantrolene"> Dantrolene</label>
+                <label><input type="radio" name="q44" value="Natalizumab"> Natalizumab</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-45">
+            <p>45- Lateral medullary syndrome is caused by occlusion of which one of the following blood vessels?</p>
+            <div class="options">
+                <label><input type="radio" name="q45" value="Anterior inferior cerebellar artery"> Anterior inferior cerebellar artery</label>
+                <label><input type="radio" name="q45" value="Posterior cerebral artery"> Posterior cerebral artery</label>
+                <label><input type="radio" name="q45" value="Lateral sinus thrombosis"> Lateral sinus thrombosis</label>
+                <label><input type="radio" name="q45" value="Middle cerebral artery"> Middle cerebral artery</label>
+                <label><input type="radio" name="q45" value="Posterior inferior cerebellar artery"> Posterior inferior cerebellar artery</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-46">
+            <p>46- A 71-year-old man is admitted to the Emergency Department. His family report that since yesterday he has been very 'clumsy' and unsteady on his feet. This morning he started to complain of numbness down his left side. On examination you notice that he has a right-sided Homer's syndrome and horizontal nystagmus. Examination of the peripheral nervous system confirms the sensory loss on the left side. Where is the lesion most likely to be?</p>
+            <div class="options">
+                <label><input type="radio" name="q46" value="Lateral sinus thrombosis"> Lateral sinus thrombosis</label>
+                <label><input type="radio" name="q46" value="Posterior cerebral artery"> Posterior cerebral artery</label>
+                <label><input type="radio" name="q46" value="Posterior inferior cerebellar artery"> Posterior inferior cerebellar artery</label>
+                <label><input type="radio" name="q46" value="Middle cerebral artery"> Middle cerebral artery</label>
+                <label><input type="radio" name="q46" value="Anterior inferior cerebellar artery"> Anterior inferior cerebellar artery</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-47">
+            <p>47- Which of these symptoms not of Wallenberg syndrome ??</p>
+            <div class="options">
+                <label><input type="radio" name="q47" value="contralateral horner"> contralateral horner</label>
+                <label><input type="radio" name="q47" value="Contralateral limb sensory loss of pain and temperature"> Contralateral limb sensory loss of pain and temperature</label>
+                <label><input type="radio" name="q47" value="Ipsilateral dysphagia"> Ipsilateral dysphagia</label>
+                <label><input type="radio" name="q47" value="Cerebellar ataxia"> Cerebellar ataxia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-48">
+            <p>48- Which of these symptoms not of Wallenberg syndrome ??</p>
+            <div class="options">
+                <label><input type="radio" name="q48" value="Ipsilateral horner"> Ipsilateral horner</label>
+                <label><input type="radio" name="q48" value="Contralateral limb sensory loss of pain and temperature"> Contralateral limb sensory loss of pain and temperature</label>
+                <label><input type="radio" name="q48" value="Contralateral tongue atrophy"> Contralateral tongue atrophy</label>
+                <label><input type="radio" name="q48" value="Cerebellar ataxia"> Cerebellar ataxia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-49">
+            <p>49- Which is not a recognized feature of cerebellar dysfunction?</p>
+            <div class="options">
+                <label><input type="radio" name="q49" value="Hypermetria"> Hypermetria</label>
+                <label><input type="radio" name="q49" value="Dysdiadochokinesis"> Dysdiadochokinesis</label>
+                <label><input type="radio" name="q49" value="Hypertonia"> Hypertonia</label>
+                <label><input type="radio" name="q49" value="Nystagmus"> Nystagmus</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-50">
+            <p>50- Romberg's sign is present in:</p>
+            <div class="options">
+                <label><input type="radio" name="q50" value="Cerebellar ataxia"> Cerebellar ataxia</label>
+                <label><input type="radio" name="q50" value="Labyrinthine ataxia"> Labyrinthine ataxia</label>
+                <label><input type="radio" name="q50" value="Apraxia"> Apraxia</label>
+                <label><input type="radio" name="q50" value="Sensory ataxia"> Sensory ataxia</label>
+                <label><input type="radio" name="q50" value="Ataxia-telangiectasia"> Ataxia-telangiectasia</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-51">
+            <p>51- Which is true about sensory ataxia ??</p>
+            <div class="options">
+                <label><input type="radio" name="q51" value="instability when patient with closed eyes"> instability when patient with closed eyes</label>
+                <label><input type="radio" name="q51" value="loss of vibration sense"> loss of vibration sense</label>
+                <label><input type="radio" name="q51" value="Trouble walking in dim light"> Trouble walking in dim light</label>
+                <label><input type="radio" name="q51" value="all of the above"> all of the above</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-52">
+            <p>52- Cause of hereditary ataxia ??</p>
+            <div class="options">
+                <label><input type="radio" name="q52" value="vitamin E deficiency"> vitamin E deficiency</label>
+                <label><input type="radio" name="q52" value="Niacin deficiency"> Niacin deficiency</label>
+                <label><input type="radio" name="q52" value="Thiamin deficiency"> Thiamin deficiency</label>
+                <label><input type="radio" name="q52" value="Vitamin B12 deficiency"> Vitamin B12 deficiency</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-53">
+            <p>53- A 14-year-old male, known diabetic is noted to have optic atrophy on fundoscopy. Neurological exam reveals dysarthric speech and nystagmus. Knee and ankle jerks are absent but there is an extensor plantar response.
+                What is the likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q53" value="Leber's optic atrophy"> Leber's optic atrophy</label>
+                <label><input type="radio" name="q53" value="Ataxic telangiectasia"> Ataxic telangiectasia</label>
+                <label><input type="radio" name="q53" value="Friedreich's ataxia"> Friedreich's ataxia</label>
+                <label><input type="radio" name="q53" value="Subacute combined degeneration of the cord"> Subacute combined degeneration of the cord</label>
+                <label><input type="radio" name="q53" value="Multiple sclerosis"> Multiple sclerosis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-54">
+            <p>54- Each one of the following is associated with Friedreich's ataxia, except:</p>
+            <div class="options">
+                <label><input type="radio" name="q54" value="Increased risk of deep vein thrombosis"> Increased risk of deep vein thrombosis</label>
+                <label><input type="radio" name="q54" value="Optic atrophy"> Optic atrophy</label>
+                <label><input type="radio" name="q54" value="Cardiomyopathy"> Cardiomyopathy</label>
+                <label><input type="radio" name="q54" value="Nystagmus"> Nystagmus</label>
+                <label><input type="radio" name="q54" value="High-arched palate"> High-arched palate</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-55">
+            <p>55- 20 years old male patient since one day not talking to anybody and not eating with urine incontinence. On examination, his eyes are open and lusterless. What is your diagnosis ?</p>
+            <div class="options">
+                <label><input type="radio" name="q55" value="Malingering"> Malingering</label>
+                <label><input type="radio" name="q55" value="Stupor"> Stupor</label>
+                <label><input type="radio" name="q55" value="Delirium"> Delirium</label>
+                <label><input type="radio" name="q55" value="Somatization"> Somatization</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-56">
+            <p>56- Knee jerk is supplied by ..</p>
+            <div class="options">
+                <label><input type="radio" name="q56" value="L4"> L4</label>
+                <label><input type="radio" name="q56" value="L3"> L3</label>
+                <label><input type="radio" name="q56" value="L2,3,4"> L2,3,4</label>
+                <label><input type="radio" name="q56" value="L3,4,5"> L3,4,5</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-57">
+            <p>57- 65 years old woman on hemodialysis for chronic renal failure require urgent dental extraction for tooth abscess. Of the following, the most appropriate agent to reduce risk of significant bleeding would be ..</p>
+            <div class="options">
+                <label><input type="radio" name="q57" value="Desmopressin"> Desmopressin</label>
+                <label><input type="radio" name="q57" value="Conjugated estrogen"> Conjugated estrogen</label>
+                <label><input type="radio" name="q57" value="Erythropoietin"> Erythropoietin</label>
+                <label><input type="radio" name="q57" value="Fresh frozen plasma"> Fresh frozen plasma</label>
+                <label><input type="radio" name="q57" value="Alpha amino caproic acid"> Alpha amino caproic acid</label>
+            </div>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        <button class="btn" id="submitBtn" onclick="evaluateQuiz()" style="display: none;">Submit Quiz</button>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+            <div id="score"></div>
+            <div id="answers-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة حدث للكيبورد لمنع حفظ الصفحة
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.key === "s") {
+                event.preventDefault();
+                alert("تم منع حفظ الصفحة!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع فتح أدوات المطور
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+                event.preventDefault();
+                alert("تم تعطيل أدوات المطور!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع النقر بزر اليمين
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // يمنع فتح قائمة السياق
+            alert("النقر بزر الماوس الأيمن غير مسموح به.");
+        });
+
+        let currentQuestion = 1;
+        const totalQuestions = 57;
+        let score = 0;
+        let timerInterval;
+        const answers = {
+            q1: "symptoms are more protracted but less severe",
+            q2: "tinnitus",
+            q3: "Benign paroxysmal positional vertigo",
+            q4: "Benign paroxysmal positional vertigo",
+            q5: "the room is spinning around her",
+            q6: "calcium debris (calcium carbonate crystals) in the semicircular canals",
+            q7: "Dix-Hallpike manoeuvre",
+            q8: "Perform Epley manoeuvre",
+            q9: "habituation occurs",
+            q10: "Meniere's disease",
+            q11: "Betahistine",
+            q12: "Approximately equal incidence in males and females",
+            q13: "Tinnitus and transient deafness",
+            q14: "Absent corneal reflex",
+            q15: "eighth cranial nerve",
+            q16: "Contralateral Nystagmus worsened by change in position",
+            q17: "Left sensorineural deafness",
+            q18: "Inattention",
+            q19: "Thyroid function tests, vitamin B12, folate, glucose",
+            q20: "Arrange a MRI head",
+            q21: "Supportive care + donepezil",
+            q22: "Lewy body dementia",
+            q23: "Symptoms worsen with neuroleptics",
+            q24: "SPECT scan",
+            q25: "Haloperidol 0.5 mg orally",
+            q26: "Crutzfeldt jacob disease",
+            q27: "Creutzfeldt jakob disease",
+            q28: "Normal pressure hydrocephalus",
+            q29: "Normal pressure hydrocephalus",
+            q30: "Papilloedema",
+            q31: "Idiopathic intracranial hypertension",
+            q32: "Prednisolone",
+            q33: "Ciclosporin",
+            q34: "Medial longitudinal bundle",
+            q35: "Spinal cord",
+            q36: "Decreased tone",
+            q37: "Absent ankle jerks",
+            q38: "Uhthoffs phenomenon",
+            q39: "Protein more than 100",
+            q40: "Presence of oligoclonal bands by aerosol gel electrophoresis",
+            q41: "Male sex",
+            q42: "Multiple cranial abnormalities",
+            q43: "Beta-interferon",
+            q44: "Baclofen",
+            q45: "Posterior inferior cerebellar artery",
+            q46: "Posterior inferior cerebellar artery",
+            q47: "contralateral horner",
+            q48: "Contralateral tongue atrophy",
+            q49: "Hypertonia",
+            q50: "Sensory ataxia",
+            q51: "all of the above",
+            q52: "vitamin E deficiency",
+            q53: "Friedreich's ataxia",
+            q54: "Increased risK of deep vein thrombosis",
+            q55: "Stupor",
+            q56: "L2,3,4",
+            q57: "Desmopressin"
+        };
+
+        function showQuestion() {
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q .style.display = index + 1 === currentQuestion ? 'block' : 'none';
+            });
+            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            clearInterval(timerInterval);
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() {
+            let timeRemaining = 60;
+            document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    if (currentQuestion < totalQuestions) {
+                        nextQuestion();
+                    } else {
+                        evaluateQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        function evaluateQuiz() {
+            score = 0;
+            let summary = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                const correctAnswer = answers[`q${i}`];
+                const questionElement = document.getElementById(`question-${i}`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+                let questionSummary = `<p><strong>Question ${i}: </strong>${questionElement.querySelector('p').innerText}</p>`;
+
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        optionLabel.style.color = 'green';
+                    } else if (selectedOption && selectedOption.value === option.value) {
+                        optionLabel.style.color = 'red';
+                    }
+                });
+
+                questionSummary += `<div>Answer: <strong>${selectedOption ? selectedOption.value : 'None selected'}</strong></div>`;
+                questionSummary += `<div>Correct answer: <strong>${correctAnswer}</strong></div>`;
+
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                    summary += questionSummary + `<p class="correct">Correct</p>`;
+                } else {
+                    summary += questionSummary + `<p class="incorrect">Incorrect</p>`;
+                }
+            }
+
+            document.getElementById('score').textContent = `Your score: ${score} out of ${totalQuestions}`;
+            document.getElementById('answers-summary').innerHTML = summary;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('timer').style.display = 'none'; 
+            document.querySelectorAll('.question').forEach((q) => q.style.display = 'none');
+
+            clearInterval(timerInterval);
+        }
+
+        window.onload = function() {
+            showQuestion();
+            startTimer();
+        };
+        
+        
+        function nextQuestion() {
+    // Increase the current question counter
+            currentQuestion++;
+
+            // Reset the timer
+            clearInterval(timerInterval); // Stop the current timer
+            startTimer(); // Start the timer from the beginning
+
+            // Show the next question
+            showQuestion();
+        }
+        
+    </script>
+</body>
+</html>
